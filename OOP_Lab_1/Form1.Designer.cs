@@ -70,6 +70,7 @@
             this.Rectangle.TabStop = true;
             this.Rectangle.Text = "Rectangle";
             this.Rectangle.UseVisualStyleBackColor = true;
+            this.Rectangle.CheckedChanged += new System.EventHandler(this.Rectangle_CheckedChanged);
             this.Rectangle.Click += new System.EventHandler(this.Rectangle_Click);
             // 
             // Ellipse
@@ -135,6 +136,7 @@
             this.Controls.Add(this.canvas);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
