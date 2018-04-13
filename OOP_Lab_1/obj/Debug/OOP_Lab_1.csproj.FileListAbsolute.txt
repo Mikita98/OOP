@@ -4,3 +4,13 @@ D:\Visual Studio Projects\OOP_Lab_1\OOP_Lab_1\obj\Debug\MainWindow.g.cs
 D:\Visual Studio Projects\OOP_Lab_1\OOP_Lab_1\obj\Debug\App.g.cs
 D:\Visual Studio Projects\OOP_Lab_1\OOP_Lab_1\obj\Debug\OOP_Lab_1_MarkupCompile.cache
 D:\Visual Studio Projects\OOP_Lab_1\OOP_Lab_1\obj\Debug\OOP_Lab_1_MarkupCompile.lref
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\OOP_Lab_1.exe.config
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.csprojResolveAssemblyReference.cache
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\OOP_Lab_1.exe
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\OOP_Lab_1.pdb
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.Form1.resources
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.Properties.Resources.resources
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.csproj.GenerateResource.Cache
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.exe
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.pdb
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.Form2.resources

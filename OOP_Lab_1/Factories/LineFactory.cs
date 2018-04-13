@@ -12,9 +12,10 @@ namespace OOP_Lab_1.Factories
         {
             return new Shapes.Line();
         }
-        public override Shapes.Shape Draw()
+       /* public override Shapes.Shape Draw()
         {
 
         }
+        */
     }
 }

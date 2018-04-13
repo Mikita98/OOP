@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace OOP_Lab_1.Factories
 {
-    abstract class MainFactory
+    class TriangleFactory:MainFactory
     {
-        public abstract Shapes.Shape FactoryMethod();
-        //public abstract Shapes.Shape Draw();
+        public override Shapes.Shape FactoryMethod()
+        {
+            return new Shapes.Triangle();
+        }
     }
 }
