@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace OOP_Lab_1.Factories
 {
-    class SquareFactory
+    class SquareFactory: MainFactory
     {
+        public override Shapes.Shape FactoryMethod()
+        {
+            return new Shapes.Square();
+        }
     }
 }

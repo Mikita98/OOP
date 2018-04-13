@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Lab_1.Shapes
 {
-    class Line: Shape
+    public class Line: Shape
     {
     }
 }

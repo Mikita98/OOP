@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Lab_1.Shapes
 {
-    class Square
+    public class Square:Shape
     {
     }
 }

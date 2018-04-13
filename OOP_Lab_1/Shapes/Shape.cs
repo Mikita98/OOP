@@ -10,9 +10,10 @@ using System.Windows.Media;
 
 namespace OOP_Lab_1.Shapes
 {
-    abstract class Shape
+    public abstract class Shape
     {
         public Color scolor, fcolor;
         public int x1, x2, y1, y2;
+        public int width,height;
     }
 }

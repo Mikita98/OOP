@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Lab_1.Shapes
 {
-    class Rectangle: Shape
+    public class Rectangle: Shape
     {
     }
 }
