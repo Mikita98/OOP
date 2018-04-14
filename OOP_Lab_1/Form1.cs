@@ -123,7 +123,16 @@ namespace OOP_Lab_1
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            
+            if (!ispress)
+            {
+                x1.Text = (e.X).ToString();
+                y1.Text = (e.Y).ToString();
+            }
+            else
+            {
+                x2.Text = (e.X).ToString();
+                y2.Text = (e.Y).ToString();
+            }
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -186,6 +195,16 @@ namespace OOP_Lab_1
         private void clearbutton_Click(object sender, EventArgs e)
         {
             gObject.Clear(Color.White);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
