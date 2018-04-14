@@ -20,8 +20,8 @@ namespace OOP_Lab_1.Factories
             if (shape.x2 > shape.y2)
             {
                 Point point1 = new Point(shape.x1, shape.y1);
-                Point point2 = new Point(shape.x1, shape.y2);
-                Point point3 = new Point(shape.x2, shape.y2);
+                Point point2 = new Point(shape.x1, shape.x2);
+                Point point3 = new Point(shape.x2, shape.x2);
                 Point point4 = new Point(shape.x2, shape.y1);
 
                 Point[] curvePoints =

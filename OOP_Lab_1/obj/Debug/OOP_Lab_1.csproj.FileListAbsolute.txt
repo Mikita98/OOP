@@ -13,4 +13,3 @@ D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.Properties
 D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.csproj.GenerateResource.Cache
 D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.exe
 D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.pdb
-D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\obj\Debug\OOP_Lab_1.Form2.resources

@@ -13,37 +13,35 @@ namespace OOP_Lab_1.Shapes
     public abstract class Shape
     {
         public Color scolor, fcolor;
-        public int x1=0, 
-                   x2=0, 
-                   y1=0, 
-                   y2=0;
-        private int width;
-        private int height;
-        private int ShapeWidth()
+        public int x1, 
+                   x2, 
+                   y1, 
+                   y2;
+        public int width;
+        public int height;
+        public void ShapeWidth()
         {
             if (x1 < x2)
             {
-                int Width = x2 - x1;
-                return Width;
+                width = x2 - x1;
+                
             }
             else
             {
-                int Width = x1 - x2;
-                return Width;
+                width = x1 - x2;
             }
         }
 
-        private int ShapeHeight()
+        public void ShapeHeight()
         {
             if (y1 < y2)
             {
-                int Height = y2 - y1;
-                return Height;
+             height = y2 - y1;
+                
             }
             else
             {
-                int Height = y1 - y2;
-                return Height;
+              height = y1 - y2;
             }
         }
 
