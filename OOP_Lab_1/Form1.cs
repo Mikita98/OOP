@@ -54,14 +54,6 @@ namespace OOP_Lab_1
             Application.Run(new Form1());
         }
 
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            /*Graphics gObject = canvas.CreateGraphics();
-            Brush red = new SolidBrush(Color.Red);
-            Pen redPen = new Pen(red, 8);
-            gObject.DrawLine(redPen, 10, 10, 400, 376);*/
-           
-        }
 
         private void CheckShape()
         {
@@ -110,7 +102,7 @@ namespace OOP_Lab_1
 
         private void DrawFigures()
         {
-            /*for (int i=0; i<list.Count; i++)
+            for (int i=0; i<list.Count; i++)
             {
                 Paints = (Figures)list[i];
                 //Paints.shape = Factory.FactoryMethod();
@@ -124,39 +116,36 @@ namespace OOP_Lab_1
                 shape.y2 = Paints.y2;
                 Factory.Draw(Paints.shape, gObject, Paints.pen);
             }
-            */
+            
             
         }
 
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (ispress)
-            {
-                gObject.Clear(Color.White);
-                shape.x2 = e.X;
-                shape.y2 = e.Y;
-                //if (list != null)
-                Factory.Draw(shape, gObject, redPen);
-            }
-            //canvas.MouseUp(sender, e);
+            
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
+            if (ispress == false)
+            {
                 ispress = true;
                 shape.x1 = e.X;
                 shape.y1 = e.Y;
+            }
+            else
+            {
+                ispress = false;
+                shape.x2 = e.X;
+                shape.y2 = e.Y;
+                Factory.Draw(shape, gObject, redPen);
+            }
         }
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            ispress = false;
-            if (ispress == false)
-            {
-               // list.Add(new Figures(shape, redPen, shape.width, shape.height, shape.x1, shape.x2, shape.y1, shape.y2));
-                //DrawFigures();
-            }
+                list.Add(new Figures(shape, redPen, shape.width, shape.height, shape.x1, shape.x2, shape.y1, shape.y2));
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
@@ -194,19 +183,9 @@ namespace OOP_Lab_1
             CheckShape();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void clearbutton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void Rectangle_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void canvas_MouseEnter(object sender, EventArgs e)
-        {
-           // ispress = false;
+            gObject.Clear(Color.White);
         }
     }
 }

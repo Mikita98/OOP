@@ -36,6 +36,7 @@
             this.Triangle = new System.Windows.Forms.RadioButton();
             this.Square = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.clearbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // canvas
@@ -45,7 +46,7 @@
             this.canvas.Size = new System.Drawing.Size(1210, 488);
             this.canvas.TabIndex = 0;
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
-            this.canvas.MouseEnter += new System.EventHandler(this.canvas_MouseEnter);
+           
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
@@ -71,7 +72,7 @@
             this.Rectangle.TabStop = true;
             this.Rectangle.Text = "Прямоугольник";
             this.Rectangle.UseVisualStyleBackColor = true;
-            this.Rectangle.CheckedChanged += new System.EventHandler(this.Rectangle_CheckedChanged);
+            
             this.Rectangle.Click += new System.EventHandler(this.Rectangle_Click);
             // 
             // Ellipse
@@ -123,11 +124,22 @@
             this.Square.UseVisualStyleBackColor = true;
             this.Square.Click += new System.EventHandler(this.Square_Click);
             // 
+            // clearbutton
+            // 
+            this.clearbutton.Location = new System.Drawing.Point(12, 214);
+            this.clearbutton.Name = "clearbutton";
+            this.clearbutton.Size = new System.Drawing.Size(129, 25);
+            this.clearbutton.TabIndex = 7;
+            this.clearbutton.Text = "Очистить";
+            this.clearbutton.UseVisualStyleBackColor = true;
+            this.clearbutton.Click += new System.EventHandler(this.clearbutton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1526, 512);
+            this.Controls.Add(this.clearbutton);
             this.Controls.Add(this.Square);
             this.Controls.Add(this.Triangle);
             this.Controls.Add(this.Circle);
@@ -137,8 +149,7 @@
             this.Controls.Add(this.canvas);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+          
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,5 +165,6 @@
         private System.Windows.Forms.RadioButton Triangle;
         private System.Windows.Forms.RadioButton Square;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button clearbutton;
     }
 }
