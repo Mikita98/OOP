@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using OOP_Lab_1.Shapes;
 
 namespace OOP_Lab_1.Factories
@@ -19,14 +17,73 @@ namespace OOP_Lab_1.Factories
             return new Shapes.Circle();
         }
 
-        public override void Draw(Shapes.Shape shape, Graphics gObject, System.Drawing.Pen pen)
+        private bool CalcWidth(Shapes.Shape shape)
         {
-            shape.ShapeHeight();
-            shape.ShapeWidth();
-            if (shape.width > shape.height)
-                gObject.DrawEllipse(pen, shape.x1, shape.y1, shape.width, shape.width);
+            if ((Math.Abs(shape.x1 - shape.x2) >= Math.Abs(shape.y2 - shape.y1)))
+            {
+                shape.width = Math.Abs(shape.y2 - shape.y1);
+                return true;
+            }
             else
-                gObject.DrawEllipse(pen, shape.x1, shape.y1, shape.height, shape.height);
+            {
+                shape.width = Math.Abs(shape.x2 - shape.x1);
+                return false;
+            }
+        }
+
+        private void Draw1(Shapes.Shape shape, Graphics gObject, Pen pen, bool xby)
+        {
+            if (xby)
+                gObject.DrawEllipse(pen, new Rectangle(shape.x1, shape.y2, shape.width, shape.width));
+            else
+                gObject.DrawEllipse(pen, new Rectangle(shape.x1, shape.y1 - Math.Abs(shape.x1 - shape.x2), shape.width, shape.width));
+        }
+
+        private void Draw2(Shapes.Shape shape, Graphics gObject, Pen pen, bool xby)
+        {
+            if (xby)
+                gObject.DrawEllipse(pen, new Rectangle(shape.x1 - Math.Abs(shape.y1 - shape.y2), shape.y2, shape.width, shape.width));
+            else
+                gObject.DrawEllipse(pen, new Rectangle(shape.x2, shape.y1 - Math.Abs(shape.x1 - shape.x2), shape.width, shape.width));
+        }
+
+        private void Draw3(Shapes.Shape shape, Graphics gObject, Pen pen, bool xby)
+        {
+            if (xby)
+                gObject.DrawEllipse(pen, new Rectangle(shape.x1 - Math.Abs(shape.y1 - shape.y2), shape.y1, shape.width, shape.width));
+            else
+                gObject.DrawEllipse(pen, new Rectangle(shape.x2, shape.y1, shape.width, shape.width));
+        }
+
+        private void Draw4(Shapes.Shape shape, Graphics gObject, Pen pen, bool xby)
+        {
+            if (xby)
+                gObject.DrawEllipse(pen, new Rectangle(shape.x1, shape.y1, shape.width, shape.width));
+            else
+                gObject.DrawEllipse(pen, new Rectangle(shape.x1, shape.y1, shape.width, shape.width));
+        }
+
+        public override void Draw(Shapes.Shape shape, Graphics gObject, Pen pen)
+        {
+            bool xby;
+            xby = CalcWidth(shape);
+            if (shape.x1 > shape.x2 && shape.y1 > shape.y2)
+            {
+                Draw2(shape, gObject, pen, xby);
+            }
+            else if (shape.y1 > shape.y2 && shape.x1 < shape.x2)
+            {
+                Draw1(shape, gObject, pen, xby);
+            }
+            else if (shape.x1 > shape.x2 && shape.y1 < shape.y2)
+            {
+                Draw3(shape, gObject, pen, xby);
+            }
+            else
+            {
+                Draw4(shape, gObject, pen, xby);
+            }
+
         }
 
     }

@@ -8,42 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace OOP_Lab_1
 {
-    public partial class Form1 : Form
+    public partial class 
+        Form1 : Form
     {
         Graphics gObject;
         Shapes.Shape shape;
+        Bitmap DrawArrea;
         Pen redPen;
         Factories.MainFactory Factory;
         bool ispress = false;
-        List<Figures> list;
-        Figures Paints;
-
-        public struct Figures
-        {
-            public Shapes.Shape shape;
-            public Pen pen;
-            public int width;
-            public int height;
-            public int x1;
-            public int x2;
-            public int y1;
-            public int y2;
-            
-            public Figures(Shapes.Shape shape_,Pen pen_, int width_, int height_, int x1_, int x2_, int y1_, int y2_)
-            {
-                shape = shape_;
-                pen = pen_;
-                width = width_;
-                height = height_;
-                x1 = x1_;
-                x2 = x2_;
-                y1 = y1_;
-                y2 = y2_;
-            }
-
-        }
+        List<PaintElem> list;
+       
         public Form1()
         {
             InitializeComponent();
@@ -54,7 +32,16 @@ namespace OOP_Lab_1
             Application.Run(new Form1());
         }
 
-
+        public class PaintElem
+        {
+            public Shapes.Shape shape;
+            public Factories.MainFactory Factory;
+            public PaintElem(Shapes.Shape shape1, Factories.MainFactory Factory1)
+            {
+                shape = shape1;
+                Factory = Factory1;
+            }
+        }
         private void CheckShape()
         {
             RadioButton radioBtn = this.Controls.OfType<RadioButton>().Where(x => x.Checked).FirstOrDefault();
@@ -93,68 +80,23 @@ namespace OOP_Lab_1
 
         private void Initial()
         {
-            gObject = canvas.CreateGraphics();
+            DrawArrea = new Bitmap(pct1.Width, pct1.Height);
+            gObject = Graphics.FromImage(DrawArrea);
             redPen = new Pen(Color.Red, 8);
-            list = new List<Figures>();
+            list = new List<PaintElem>();
             CheckShape();
             ispress = false;
-        }
+           }
 
         private void DrawFigures()
         {
+            gObject.Clear(Color.White);
             for (int i=0; i<list.Count; i++)
             {
-                Paints = (Figures)list[i];
-                //Paints.shape = Factory.FactoryMethod();
-                shape = Paints.shape;
-                redPen = Paints.pen;
-                shape.width = Paints.width;
-                shape.height = Paints.height;
-                shape.x1 = Paints.x1;
-                shape.x2 = Paints.x2;
-                shape.y1 = Paints.y1;
-                shape.y2 = Paints.y2;
-                Factory.Draw(Paints.shape, gObject, Paints.pen);
+                var FactoryTemp = list[i].Factory;
+                FactoryTemp.Draw(list[i].shape, gObject, redPen);
             }
-            
-            
-        }
-
-
-        private void canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (!ispress)
-            {
-                x1.Text = (e.X).ToString();
-                y1.Text = (e.Y).ToString();
-            }
-            else
-            {
-                x2.Text = (e.X).ToString();
-                y2.Text = (e.Y).ToString();
-            }
-        }
-
-        private void canvas_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (ispress == false)
-            {
-                ispress = true;
-                shape.x1 = e.X;
-                shape.y1 = e.Y;
-            }
-            else
-            {
-                ispress = false;
-                shape.x2 = e.X;
-                shape.y2 = e.Y;
-                Factory.Draw(shape, gObject, redPen);
-            }
-        }
-
-        private void canvas_MouseUp(object sender, MouseEventArgs e)
-        {
-                list.Add(new Figures(shape, redPen, shape.width, shape.height, shape.x1, shape.x2, shape.y1, shape.y2));
+            pct1.Image = DrawArrea;
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
@@ -195,16 +137,59 @@ namespace OOP_Lab_1
         private void clearbutton_Click(object sender, EventArgs e)
         {
             gObject.Clear(Color.White);
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            list.Clear();
+            pct1.Image = DrawArrea;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void pct1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!ispress)
+            {
+                ispress = true;
+                CheckShape();
+                shape.x1 = e.X;
+                shape.y1 = e.Y;
+            }
+            else
+            {
+                ispress = false;
+            }
+        }
+
+        private void pct1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!ispress)
+            {
+                x1.Text = (e.X).ToString();
+                y1.Text = (e.Y).ToString();
+            }
+            else
+            {
+                x2.Text = (e.X).ToString();
+                y2.Text = (e.Y).ToString();
+                shape.x2 = e.X;
+                shape.y2 = e.Y;
+                gObject.Clear(Color.White);
+                if (list.Count != 0)
+                {
+                    DrawFigures();
+                }
+                Factory.Draw(shape, gObject, redPen);
+                pct1.Image = DrawArrea;
+            }
+        }
+
+        private void pct1_MouseUp(object sender, MouseEventArgs e)
+        {
+            ispress = false;
+            var Paint = new PaintElem(shape, Factory);
+            list.Add(Paint);
+            pct1.Image = DrawArrea;
         }
     }
 }

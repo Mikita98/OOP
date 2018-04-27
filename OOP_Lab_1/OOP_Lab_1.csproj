@@ -69,7 +69,7 @@
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="Shapes\Ellipse.cs" />
     <Compile Include="Shapes\Line.cs" />
-    <Compile Include="Shapes\Rectangle.cs" />
+    <Compile Include="Shapes\Rectangles.cs" />
     <Compile Include="Shapes\Shape.cs" />
     <Compile Include="Shapes\Square.cs" />
     <Compile Include="Shapes\Triangle.cs" />

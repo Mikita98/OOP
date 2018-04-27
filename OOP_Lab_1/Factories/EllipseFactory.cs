@@ -20,9 +20,24 @@ namespace OOP_Lab_1.Factories
 
         public override void Draw(Shape shape, Graphics gObject, System.Drawing.Pen pen)
         {
-            shape.ShapeHeight();
-            shape.ShapeWidth();
-            gObject.DrawEllipse(pen, shape.x1, shape.y1, shape.width, shape.height);
+            shape.ShapeParam();
+            if (shape.x1 > shape.x2 && shape.y1 > shape.y2)
+            {
+
+                gObject.DrawEllipse(pen, new Rectangle(shape.x2, shape.y2, Math.Abs(shape.x1 - shape.x2), Math.Abs(shape.y1 - shape.y2)));
+
+            }
+            else if (shape.y1 > shape.y2 && shape.x1 < shape.x2)
+            {
+
+                gObject.DrawEllipse(pen, new Rectangle(shape.x1, shape.y2, Math.Abs(shape.x2 - shape.x1), Math.Abs(shape.y2 - shape.y1)));
+            }
+            else if (shape.x1 > shape.x2 && shape.y1 < shape.y2)
+            {
+                gObject.DrawEllipse(pen, new Rectangle(shape.x2, shape.y1, Math.Abs(shape.x2 - shape.x1), Math.Abs(shape.y2 - shape.y1)));
+            }
+            else gObject.DrawEllipse(pen, new Rectangle(shape.x1, shape.y1, Math.Abs(shape.x2 - shape.x1), Math.Abs(shape.y2 - shape.y1)));
+
         }
 
     }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.canvas = new System.Windows.Forms.Panel();
             this.Line = new System.Windows.Forms.RadioButton();
             this.Rectangle = new System.Windows.Forms.RadioButton();
             this.Ellipse = new System.Windows.Forms.RadioButton();
@@ -43,18 +42,9 @@
             this.y2 = new System.Windows.Forms.TextBox();
             this.coordinate1 = new System.Windows.Forms.Label();
             this.coordinate2 = new System.Windows.Forms.Label();
+            this.pct1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pct1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // canvas
-            // 
-            this.canvas.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.canvas.Location = new System.Drawing.Point(304, 12);
-            this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(1210, 488);
-            this.canvas.TabIndex = 0;
-            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
-            this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
-            this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
             // Line
             // 
@@ -65,6 +55,7 @@
             this.Line.TabStop = true;
             this.Line.Text = "Линия";
             this.Line.UseVisualStyleBackColor = true;
+        
             this.Line.Click += new System.EventHandler(this.Line_Click);
             // 
             // Rectangle
@@ -152,7 +143,7 @@
             // x2
             // 
             this.x2.Enabled = false;
-            this.x2.Location = new System.Drawing.Point(153, 293);
+            this.x2.Location = new System.Drawing.Point(160, 293);
             this.x2.Name = "x2";
             this.x2.Size = new System.Drawing.Size(100, 22);
             this.x2.TabIndex = 10;
@@ -160,7 +151,7 @@
             // y2
             // 
             this.y2.Enabled = false;
-            this.y2.Location = new System.Drawing.Point(153, 321);
+            this.y2.Location = new System.Drawing.Point(160, 321);
             this.y2.Name = "y2";
             this.y2.Size = new System.Drawing.Size(100, 22);
             this.y2.TabIndex = 11;
@@ -168,12 +159,12 @@
             // coordinate1
             // 
             this.coordinate1.AutoSize = true;
-            this.coordinate1.Location = new System.Drawing.Point(12, 263);
+            this.coordinate1.Location = new System.Drawing.Point(9, 263);
             this.coordinate1.Name = "coordinate1";
             this.coordinate1.Size = new System.Drawing.Size(139, 17);
             this.coordinate1.TabIndex = 12;
             this.coordinate1.Text = "Первая координата";
-            this.coordinate1.Click += new System.EventHandler(this.label1_Click);
+           
             // 
             // coordinate2
             // 
@@ -184,11 +175,23 @@
             this.coordinate2.TabIndex = 13;
             this.coordinate2.Text = "Вторая координата";
             // 
+            // pct1
+            // 
+            this.pct1.Location = new System.Drawing.Point(353, 12);
+            this.pct1.Name = "pct1";
+            this.pct1.Size = new System.Drawing.Size(1152, 516);
+            this.pct1.TabIndex = 14;
+            this.pct1.TabStop = false;
+            this.pct1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pct1_MouseDown);
+            this.pct1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pct1_MouseMove);
+            this.pct1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pct1_MouseUp);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1526, 512);
+            this.ClientSize = new System.Drawing.Size(1526, 694);
+            this.Controls.Add(this.pct1);
             this.Controls.Add(this.coordinate2);
             this.Controls.Add(this.coordinate1);
             this.Controls.Add(this.y2);
@@ -202,18 +205,16 @@
             this.Controls.Add(this.Ellipse);
             this.Controls.Add(this.Rectangle);
             this.Controls.Add(this.Line);
-            this.Controls.Add(this.canvas);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Графический редактор";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pct1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel canvas;
         private System.Windows.Forms.RadioButton Line;
         private System.Windows.Forms.RadioButton Rectangle;
         private System.Windows.Forms.RadioButton Ellipse;
@@ -228,5 +229,6 @@
         private System.Windows.Forms.TextBox y2;
         private System.Windows.Forms.Label coordinate1;
         private System.Windows.Forms.Label coordinate2;
+        private System.Windows.Forms.PictureBox pct1;
     }
 }

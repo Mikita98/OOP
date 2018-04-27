@@ -19,30 +19,16 @@ namespace OOP_Lab_1.Shapes
                    y2;
         public int width;
         public int height;
-        public void ShapeWidth()
+        public int xtemp;
+        public int ytemp;
+        public Shape()
         {
-            if (x1 < x2)
-            {
-                width = x2 - x1;
-                
-            }
-            else
-            {
-                width = x1 - x2;
-            }
-        }
 
-        public void ShapeHeight()
+        }
+        public void ShapeParam()
         {
-            if (y1 < y2)
-            {
-             height = y2 - y1;
-                
-            }
-            else
-            {
-              height = y1 - y2;
-            }
+            width = Math.Abs(x1 - x2);
+            height = Math.Abs(y1 - y2);
         }
 
     }

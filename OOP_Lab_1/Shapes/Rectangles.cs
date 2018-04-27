@@ -10,8 +10,8 @@ using System.Windows.Media;
 
 namespace OOP_Lab_1.Shapes
 {
-    public class Rectangle: Shape
+    public class Rectangles: Shape
     {
-     
+        
     }
 }

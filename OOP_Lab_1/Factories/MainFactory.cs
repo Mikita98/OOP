@@ -9,9 +9,10 @@ using System.Drawing;
 
 namespace OOP_Lab_1.Factories
 {
-    abstract class MainFactory
+    public abstract class MainFactory
     {
         public abstract Shapes.Shape FactoryMethod();
-        public abstract void Draw(Shapes.Shape shape, Graphics gObject, Pen pen);
+        public virtual void Draw(Shapes.Shape shape, Graphics gObject, Pen pen){
+        }
     }
 }
