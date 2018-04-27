@@ -9,6 +9,7 @@ using System.Windows.Shapes;
 
 namespace OOP_Lab_1.Factories
 {
+    [Serializable]
     class TriangleFactory:MainFactory
     {
         public override Shapes.Shape FactoryMethod()
@@ -16,7 +17,7 @@ namespace OOP_Lab_1.Factories
             return new Shapes.Triangle();
         }
 
-        public override void Draw(Shapes.Shape shape, Graphics gObject)
+        public override void Draw(Shapes.Shape shape, Graphics gObject, Pen pen)
         {
 
             Point point1 = new Point(shape.x1, shape.y1);
@@ -28,7 +29,7 @@ namespace OOP_Lab_1.Factories
                  point2,
                  point3,
              };
-            gObject.DrawPolygon(shape.pen, curvePoints);
+            gObject.DrawPolygon(pen, curvePoints);
         }
 
     }

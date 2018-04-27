@@ -10,6 +10,7 @@ using System.Windows.Media;
 
 namespace OOP_Lab_1.Shapes
 {
+    [Serializable]
     public class Rectangles: Shape
     {
         

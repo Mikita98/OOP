@@ -9,6 +9,7 @@ using System.Windows.Ink;
 using System.Drawing;
 namespace OOP_Lab_1.Shapes
 {
+    [Serializable]
     public class Triangle:Shape
     {
      

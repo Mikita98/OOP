@@ -11,6 +11,7 @@ using OOP_Lab_1.Shapes;
 
 namespace OOP_Lab_1.Factories
 {
+    [Serializable]
     class LineFactory: MainFactory
     {
         public override Shapes.Shape FactoryMethod()
@@ -18,9 +19,9 @@ namespace OOP_Lab_1.Factories
             return new Shapes.Line();
         }
 
-        public override void Draw(Shapes.Shape shape, Graphics gObject)
+        public override void Draw(Shapes.Shape shape, Graphics gObject, Pen pen)
         {
-            gObject.DrawLine(shape.pen, shape.x1, shape.y1, shape.x2, shape.y2);
+            gObject.DrawLine(pen, shape.x1, shape.y1, shape.x2, shape.y2);
         }
 
     }

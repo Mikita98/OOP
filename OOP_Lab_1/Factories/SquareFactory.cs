@@ -8,6 +8,7 @@ using System.Drawing;
 
 namespace OOP_Lab_1.Factories
 {
+    [Serializable]
     class SquareFactory : MainFactory
     {
         public override Shapes.Shape FactoryMethod()
@@ -61,25 +62,25 @@ namespace OOP_Lab_1.Factories
                 gObject.DrawRectangle(pen, new Rectangle(shape.x1, shape.y1, shape.width, shape.width));
         }
 
-        public override void Draw(Shapes.Shape shape, Graphics gObject)
+        public override void Draw(Shapes.Shape shape, Graphics gObject, Pen pen)
         {
             bool xby;
             xby = CalcWidth(shape);
                 if (shape.x1 > shape.x2 && shape.y1 > shape.y2)
                 {
-                    Draw2(shape, gObject, shape.pen, xby);      
+                    Draw2(shape, gObject, pen, xby);      
                 }
                 else if (shape.y1 > shape.y2 && shape.x1 < shape.x2)
                 {
-                    Draw1(shape, gObject, shape.pen, xby);
+                    Draw1(shape, gObject, pen, xby);
                 }
                 else if (shape.x1 > shape.x2 && shape.y1 < shape.y2)
                 {
-                     Draw3(shape, gObject, shape.pen, xby);
+                     Draw3(shape, gObject, pen, xby);
                 }
                 else
                 {
-                     Draw4(shape, gObject, shape.pen, xby);
+                     Draw4(shape, gObject, pen, xby);
                 }
             
          }

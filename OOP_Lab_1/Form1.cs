@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace OOP_Lab_1
 {
@@ -17,6 +18,7 @@ namespace OOP_Lab_1
         Graphics gObject;
         Shapes.Shape shape;
         Bitmap DrawArrea;
+        Pen pen;
         Factories.MainFactory Factory;
         bool ispress = false;
         List<PaintElem> list;
@@ -26,11 +28,12 @@ namespace OOP_Lab_1
             InitializeComponent();
             Initial();
         }
+        [STAThreadAttribute]
         private static void Main()
         {
             Application.Run(new Form1());
         }
-
+        [Serializable]
         public class PaintElem
         {
             public Shapes.Shape shape;
@@ -53,42 +56,42 @@ namespace OOP_Lab_1
                         shape = Factory.FactoryMethod();
                         shape.scolor = colorDialog1.Color;
                         shape.Pwidth = trackBar1.Value;
-                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
+                        pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Ellipse":
                         Factory = new Factories.EllipseFactory();
                         shape = Factory.FactoryMethod();
                         shape.scolor = colorDialog1.Color;
                         shape.Pwidth = trackBar1.Value;
-                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
+                        pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Rectangle":
                         Factory = new Factories.RectangleFactory();
                         shape = Factory.FactoryMethod();
                         shape.scolor = colorDialog1.Color;
                         shape.Pwidth = trackBar1.Value;
-                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
+                        pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Square":
                         Factory = new Factories.SquareFactory();
                         shape = Factory.FactoryMethod();
                         shape.scolor = colorDialog1.Color;
                         shape.Pwidth = trackBar1.Value;
-                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
+                        pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Triangle":
                         Factory = new Factories.TriangleFactory();
                         shape = Factory.FactoryMethod();
                         shape.scolor = colorDialog1.Color;
                         shape.Pwidth = trackBar1.Value;
-                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
+                        pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Circle":
                         Factory = new Factories.CircleFactory();
                         shape = Factory.FactoryMethod();
                         shape.scolor = colorDialog1.Color;
                         shape.Pwidth = trackBar1.Value;
-                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
+                        pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
 
                 }
@@ -112,7 +115,8 @@ namespace OOP_Lab_1
             {
                 var FactoryTemp = list[i].Factory;
                 //shape.pen.Color = list[i].shape.scolor;
-                FactoryTemp.Draw(list[i].shape, gObject);
+                Pen pentemp = new Pen(list[i].shape.scolor, list[i].shape.Pwidth);
+                FactoryTemp.Draw(list[i].shape, gObject, pentemp);
             }
             pct1.Image = DrawArrea;
         }
@@ -197,7 +201,7 @@ namespace OOP_Lab_1
                 {
                     DrawFigures();
                 }
-                Factory.Draw(shape, gObject);
+                Factory.Draw(shape, gObject, pen);
                 pct1.Image = DrawArrea;
             }
         }
@@ -215,6 +219,43 @@ namespace OOP_Lab_1
             if(colorDialog1.ShowDialog() == DialogResult.OK)
             { 
                 Pcolor.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void MSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate))
+                {
+
+                    formatter.Serialize(fs, list);
+                }
+            }
+        }
+
+        private void MOpen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate))
+                {
+                    List<PaintElem> list2 = (List<PaintElem>)formatter.Deserialize(fs);
+                    gObject.Clear(Color.White);
+                    for (int i = 0; i < list2.Count; i++)
+                    {
+                        var FactoryTemp = list2[i].Factory;
+                        //shape.pen.Color = list[i].shape.scolor;
+                        Pen pentemp = new Pen(list2[i].shape.scolor, list2[i].shape.Pwidth);
+                        FactoryTemp.Draw(list2[i].shape, gObject, pentemp);
+                    }
+                    pct1.Image = DrawArrea;
+                }
             }
         }
     }

@@ -47,8 +47,12 @@
             this.Pcolor = new System.Windows.Forms.Panel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.MOpen = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pct1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Line
@@ -226,6 +230,32 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Выбрать Толщину";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MSave,
+            this.MOpen});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1526, 28);
+            this.menuStrip1.TabIndex = 19;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // MSave
+            // 
+            this.MSave.Name = "MSave";
+            this.MSave.Size = new System.Drawing.Size(95, 24);
+            this.MSave.Text = "Сохранить";
+            this.MSave.Click += new System.EventHandler(this.MSave_Click);
+            // 
+            // MOpen
+            // 
+            this.MOpen.Name = "MOpen";
+            this.MOpen.Size = new System.Drawing.Size(79, 24);
+            this.MOpen.Text = "Открыть";
+            this.MOpen.Click += new System.EventHandler(this.MOpen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -249,11 +279,15 @@
             this.Controls.Add(this.Ellipse);
             this.Controls.Add(this.Rectangle);
             this.Controls.Add(this.Line);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Графический редактор";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pct1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,5 +313,8 @@
         private System.Windows.Forms.Panel Pcolor;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem MSave;
+        private System.Windows.Forms.ToolStripMenuItem MOpen;
     }
 }
