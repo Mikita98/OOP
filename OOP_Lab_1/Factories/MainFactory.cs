@@ -12,7 +12,7 @@ namespace OOP_Lab_1.Factories
     public abstract class MainFactory
     {
         public abstract Shapes.Shape FactoryMethod();
-        public virtual void Draw(Shapes.Shape shape, Graphics gObject, Pen pen){
+        public virtual void Draw(Shapes.Shape shape, Graphics gObject){
         }
     }
 }

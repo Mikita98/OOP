@@ -16,10 +16,11 @@ namespace OOP_Lab_1.Factories
             return new Shapes.Triangle();
         }
 
-        public override void Draw(Shapes.Shape shape, Graphics gObject, Pen pen)
+        public override void Draw(Shapes.Shape shape, Graphics gObject)
         {
+
             Point point1 = new Point(shape.x1, shape.y1);
-            Point point2 = new Point(shape.x2 / 2, shape.y2);
+            Point point2 = new Point(shape.x2, shape.y2);
             Point point3 = new Point(shape.x1, shape.y2);
             Point[] curvePoints =
              {
@@ -27,7 +28,7 @@ namespace OOP_Lab_1.Factories
                  point2,
                  point3,
              };
-            gObject.DrawPolygon(pen, curvePoints);
+            gObject.DrawPolygon(shape.pen, curvePoints);
         }
 
     }

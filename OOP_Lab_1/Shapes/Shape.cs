@@ -12,7 +12,10 @@ namespace OOP_Lab_1.Shapes
 {
     public abstract class Shape
     {
-        public Color scolor, fcolor;
+        public Color scolor, 
+                fcolor;
+        public Pen pen;
+        public int Pwidth;
         public int x1, 
                    x2, 
                    y1, 

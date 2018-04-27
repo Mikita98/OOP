@@ -17,7 +17,6 @@ namespace OOP_Lab_1
         Graphics gObject;
         Shapes.Shape shape;
         Bitmap DrawArrea;
-        Pen redPen;
         Factories.MainFactory Factory;
         bool ispress = false;
         List<PaintElem> list;
@@ -52,26 +51,44 @@ namespace OOP_Lab_1
                     case "Line":
                         Factory = new Factories.LineFactory();
                         shape = Factory.FactoryMethod();
+                        shape.scolor = colorDialog1.Color;
+                        shape.Pwidth = trackBar1.Value;
+                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Ellipse":
                         Factory = new Factories.EllipseFactory();
                         shape = Factory.FactoryMethod();
+                        shape.scolor = colorDialog1.Color;
+                        shape.Pwidth = trackBar1.Value;
+                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Rectangle":
                         Factory = new Factories.RectangleFactory();
                         shape = Factory.FactoryMethod();
+                        shape.scolor = colorDialog1.Color;
+                        shape.Pwidth = trackBar1.Value;
+                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Square":
                         Factory = new Factories.SquareFactory();
                         shape = Factory.FactoryMethod();
+                        shape.scolor = colorDialog1.Color;
+                        shape.Pwidth = trackBar1.Value;
+                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Triangle":
                         Factory = new Factories.TriangleFactory();
                         shape = Factory.FactoryMethod();
+                        shape.scolor = colorDialog1.Color;
+                        shape.Pwidth = trackBar1.Value;
+                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
                     case "Circle":
                         Factory = new Factories.CircleFactory();
                         shape = Factory.FactoryMethod();
+                        shape.scolor = colorDialog1.Color;
+                        shape.Pwidth = trackBar1.Value;
+                        shape.pen = new Pen(shape.scolor, shape.Pwidth);
                         break;
 
                 }
@@ -82,19 +99,20 @@ namespace OOP_Lab_1
         {
             DrawArrea = new Bitmap(pct1.Width, pct1.Height);
             gObject = Graphics.FromImage(DrawArrea);
-            redPen = new Pen(Color.Red, 8);
+            colorDialog1.Color = Color.Black;
             list = new List<PaintElem>();
-            CheckShape();
+            Pcolor.BackColor = colorDialog1.Color;
             ispress = false;
            }
 
         private void DrawFigures()
         {
             gObject.Clear(Color.White);
-            for (int i=0; i<list.Count; i++)
+            for (int i=0; i < list.Count; i++)
             {
                 var FactoryTemp = list[i].Factory;
-                FactoryTemp.Draw(list[i].shape, gObject, redPen);
+                //shape.pen.Color = list[i].shape.scolor;
+                FactoryTemp.Draw(list[i].shape, gObject);
             }
             pct1.Image = DrawArrea;
         }
@@ -143,7 +161,7 @@ namespace OOP_Lab_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void pct1_MouseDown(object sender, MouseEventArgs e)
@@ -179,7 +197,7 @@ namespace OOP_Lab_1
                 {
                     DrawFigures();
                 }
-                Factory.Draw(shape, gObject, redPen);
+                Factory.Draw(shape, gObject);
                 pct1.Image = DrawArrea;
             }
         }
@@ -190,6 +208,14 @@ namespace OOP_Lab_1
             var Paint = new PaintElem(shape, Factory);
             list.Add(Paint);
             pct1.Image = DrawArrea;
+        }
+
+        private void Bcolor_Click(object sender, EventArgs e)
+        {
+            if(colorDialog1.ShowDialog() == DialogResult.OK)
+            { 
+                Pcolor.BackColor = colorDialog1.Color;
+            }
         }
     }
 }

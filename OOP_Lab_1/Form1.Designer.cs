@@ -43,11 +43,17 @@
             this.coordinate1 = new System.Windows.Forms.Label();
             this.coordinate2 = new System.Windows.Forms.Label();
             this.pct1 = new System.Windows.Forms.PictureBox();
+            this.Bcolor = new System.Windows.Forms.Button();
+            this.Pcolor = new System.Windows.Forms.Panel();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pct1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // Line
             // 
+            this.Line.Checked = true;
             this.Line.Location = new System.Drawing.Point(12, 42);
             this.Line.Name = "Line";
             this.Line.Size = new System.Drawing.Size(100, 25);
@@ -55,7 +61,6 @@
             this.Line.TabStop = true;
             this.Line.Text = "Линия";
             this.Line.UseVisualStyleBackColor = true;
-        
             this.Line.Click += new System.EventHandler(this.Line_Click);
             // 
             // Rectangle
@@ -164,7 +169,6 @@
             this.coordinate1.Size = new System.Drawing.Size(139, 17);
             this.coordinate1.TabIndex = 12;
             this.coordinate1.Text = "Первая координата";
-           
             // 
             // coordinate2
             // 
@@ -177,6 +181,7 @@
             // 
             // pct1
             // 
+            this.pct1.BackColor = System.Drawing.Color.White;
             this.pct1.Location = new System.Drawing.Point(353, 12);
             this.pct1.Name = "pct1";
             this.pct1.Size = new System.Drawing.Size(1152, 516);
@@ -186,11 +191,50 @@
             this.pct1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pct1_MouseMove);
             this.pct1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pct1_MouseUp);
             // 
+            // Bcolor
+            // 
+            this.Bcolor.Location = new System.Drawing.Point(12, 361);
+            this.Bcolor.Name = "Bcolor";
+            this.Bcolor.Size = new System.Drawing.Size(84, 57);
+            this.Bcolor.TabIndex = 15;
+            this.Bcolor.Text = "Выбрать цвет";
+            this.Bcolor.UseVisualStyleBackColor = true;
+            this.Bcolor.Click += new System.EventHandler(this.Bcolor_Click);
+            // 
+            // Pcolor
+            // 
+            this.Pcolor.Location = new System.Drawing.Point(102, 361);
+            this.Pcolor.Name = "Pcolor";
+            this.Pcolor.Size = new System.Drawing.Size(53, 57);
+            this.Pcolor.TabIndex = 16;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(170, 381);
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 56);
+            this.trackBar1.TabIndex = 17;
+            this.trackBar1.Value = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(167, 361);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 17);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Выбрать Толщину";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1526, 694);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.Pcolor);
+            this.Controls.Add(this.Bcolor);
             this.Controls.Add(this.pct1);
             this.Controls.Add(this.coordinate2);
             this.Controls.Add(this.coordinate1);
@@ -209,6 +253,7 @@
             this.Text = "Графический редактор";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pct1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,5 +275,9 @@
         private System.Windows.Forms.Label coordinate1;
         private System.Windows.Forms.Label coordinate2;
         private System.Windows.Forms.PictureBox pct1;
+        private System.Windows.Forms.Button Bcolor;
+        private System.Windows.Forms.Panel Pcolor;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label1;
     }
 }
