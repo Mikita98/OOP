@@ -160,6 +160,7 @@ namespace OOP_Lab_1
         {
             gObject.Clear(Color.White);
             list.Clear();
+            LBox1.Items.Clear();
             pct1.Image = DrawArrea;
         }
 
@@ -211,6 +212,7 @@ namespace OOP_Lab_1
             ispress = false;
             var Paint = new PaintElem(shape, Factory);
             list.Add(Paint);
+            LBox1.Items.Add(Paint.shape);
             pct1.Image = DrawArrea;
         }
 
@@ -219,6 +221,18 @@ namespace OOP_Lab_1
             if(colorDialog1.ShowDialog() == DialogResult.OK)
             { 
                 Pcolor.BackColor = colorDialog1.Color;
+                if (LBox1.SelectedIndex != -1)
+                {
+                    list[LBox1.SelectedIndex].shape.scolor = colorDialog1.Color;
+                    gObject.Clear(Color.White);
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var FactoryTemp = list[i].Factory;
+                        Pen pentemp = new Pen(list[i].shape.scolor, list[i].shape.Pwidth);
+                        FactoryTemp.Draw(list[i].shape, gObject, pentemp);
+                    }
+                    pct1.Image = DrawArrea;
+                }
             }
         }
 
@@ -239,23 +253,58 @@ namespace OOP_Lab_1
 
         private void MOpen_Click(object sender, EventArgs e)
         {
+            list.Clear();
+            LBox1.Items.Clear();
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 using (FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate))
                 {
-                    List<PaintElem> list2 = (List<PaintElem>)formatter.Deserialize(fs);
+                    list = (List<PaintElem>)formatter.Deserialize(fs);
                     gObject.Clear(Color.White);
-                    for (int i = 0; i < list2.Count; i++)
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        var FactoryTemp = list2[i].Factory;
+                        LBox1.Items.Add(list[i].shape);
+                        var FactoryTemp = list[i].Factory;
                         //shape.pen.Color = list[i].shape.scolor;
-                        Pen pentemp = new Pen(list2[i].shape.scolor, list2[i].shape.Pwidth);
-                        FactoryTemp.Draw(list2[i].shape, gObject, pentemp);
+                        Pen pentemp = new Pen(list[i].shape.scolor, list[i].shape.Pwidth);
+                        FactoryTemp.Draw(list[i].shape, gObject, pentemp);
                     }
+
                     pct1.Image = DrawArrea;
                 }
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            if (LBox1.SelectedIndex != -1)
+            {
+                list[LBox1.SelectedIndex].shape.Pwidth = trackBar1.Value;
+                gObject.Clear(Color.White);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var FactoryTemp = list[i].Factory;
+                    Pen pentemp = new Pen(list[i].shape.scolor, list[i].shape.Pwidth);
+                    FactoryTemp.Draw(list[i].shape, gObject, pentemp);
+                }
+                pct1.Image = DrawArrea;
+            }
+        }
+
+        private void clearfig_Click(object sender, EventArgs e)
+        {
+            if (LBox1.SelectedIndex != -1)
+            {
+                list.RemoveAt(LBox1.SelectedIndex);
+                LBox1.Items.RemoveAt(LBox1.SelectedIndex);
+                DrawFigures();
             }
         }
     }

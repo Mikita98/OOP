@@ -24,10 +24,6 @@ namespace OOP_Lab_1.Shapes
         public int height;
         public int xtemp;
         public int ytemp;
-        public Shape()
-        {
-
-        }
         public void ShapeParam()
         {
             width = Math.Abs(x1 - x2);

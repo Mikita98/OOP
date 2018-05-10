@@ -50,6 +50,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MSave = new System.Windows.Forms.ToolStripMenuItem();
             this.MOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.ControlPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.LBox1 = new System.Windows.Forms.ListBox();
+            this.clearfig = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pct1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -220,6 +223,7 @@
             this.trackBar1.Size = new System.Drawing.Size(104, 56);
             this.trackBar1.TabIndex = 17;
             this.trackBar1.Value = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label1
             // 
@@ -238,7 +242,7 @@
             this.MOpen});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1526, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1743, 28);
             this.menuStrip1.TabIndex = 19;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -256,11 +260,43 @@
             this.MOpen.Text = "Открыть";
             this.MOpen.Click += new System.EventHandler(this.MOpen_Click);
             // 
+            // ControlPanel
+            // 
+            this.ControlPanel.AutoScroll = true;
+            this.ControlPanel.AutoSize = true;
+            this.ControlPanel.Location = new System.Drawing.Point(1540, 32);
+            this.ControlPanel.Name = "ControlPanel";
+            this.ControlPanel.Size = new System.Drawing.Size(200, 116);
+            this.ControlPanel.TabIndex = 20;
+            // 
+            // LBox1
+            // 
+            this.LBox1.FormattingEnabled = true;
+            this.LBox1.ItemHeight = 16;
+            this.LBox1.Location = new System.Drawing.Point(12, 444);
+            this.LBox1.Name = "LBox1";
+            this.LBox1.Size = new System.Drawing.Size(198, 228);
+            this.LBox1.TabIndex = 21;
+            this.LBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // clearfig
+            // 
+            this.clearfig.Location = new System.Drawing.Point(220, 443);
+            this.clearfig.Name = "clearfig";
+            this.clearfig.Size = new System.Drawing.Size(97, 50);
+            this.clearfig.TabIndex = 22;
+            this.clearfig.Text = "Удалить фигуру";
+            this.clearfig.UseVisualStyleBackColor = true;
+            this.clearfig.Click += new System.EventHandler(this.clearfig_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1526, 694);
+            this.ClientSize = new System.Drawing.Size(1743, 694);
+            this.Controls.Add(this.clearfig);
+            this.Controls.Add(this.LBox1);
+            this.Controls.Add(this.ControlPanel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.Pcolor);
@@ -316,5 +352,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem MSave;
         private System.Windows.Forms.ToolStripMenuItem MOpen;
+        private System.Windows.Forms.FlowLayoutPanel ControlPanel;
+        private System.Windows.Forms.ListBox LBox1;
+        private System.Windows.Forms.Button clearfig;
     }
 }
