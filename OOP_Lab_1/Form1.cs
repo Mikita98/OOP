@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace OOP_Lab_1
@@ -19,10 +20,11 @@ namespace OOP_Lab_1
         Shapes.Shape shape;
         Bitmap DrawArrea;
         Pen pen;
+        List<PaintElem> listTemp;
         Factories.MainFactory Factory;
         bool ispress = false;
         List<PaintElem> list;
-       
+        int TempX, TempY = 0;
         public Form1()
         {
             InitializeComponent();
@@ -174,9 +176,11 @@ namespace OOP_Lab_1
             if (!ispress)
             {
                 ispress = true;
-                CheckShape();
-                shape.x1 = e.X;
-                shape.y1 = e.Y;
+                //CheckShape();
+                TempX = e.X;
+                TempY = e.Y;
+                /*shape.x1 = e.X;
+                shape.y1 = e.Y;*/
             }
             else
             {
@@ -193,6 +197,9 @@ namespace OOP_Lab_1
             }
             else
             {
+                CheckShape();
+                shape.x1 = TempX;
+                shape.y1 = TempY;
                 x2.Text = (e.X).ToString();
                 y2.Text = (e.Y).ToString();
                 shape.x2 = e.X;
@@ -210,6 +217,8 @@ namespace OOP_Lab_1
         private void pct1_MouseUp(object sender, MouseEventArgs e)
         {
             ispress = false;
+            TempX = 0;
+            TempY = 0;
             var Paint = new PaintElem(shape, Factory);
             list.Add(Paint);
             LBox1.Items.Add(Paint.shape);
@@ -238,40 +247,62 @@ namespace OOP_Lab_1
 
         private void MSave_Click(object sender, EventArgs e)
         {
+            bool error = false;
             SaveFileDialog sfd = new SaveFileDialog();
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-
-                using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate))
+                try
                 {
+                    BinaryFormatter formatter = new BinaryFormatter();
 
-                    formatter.Serialize(fs, list);
+                    using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate))
+                    {
+                        formatter.Serialize(fs, list);
+                    }
+                }
+                catch(SerializationException b)
+                {
+                    error = true;
+                    MessageBox.Show(b.Message, "Ошибка сериализации", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
             }
         }
 
         private void MOpen_Click(object sender, EventArgs e)
         {
-            list.Clear();
-            LBox1.Items.Clear();
+            bool error = false;
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate))
+                try
                 {
-                    list = (List<PaintElem>)formatter.Deserialize(fs);
+
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    using (FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate))
+                    {
+                        listTemp = (List<PaintElem>)formatter.Deserialize(fs);
+                    }
+                }
+                catch(SerializationException b)
+                {
+                    error = true;
+                    MessageBox.Show(b.Message, "Ошибка десериализации ", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                }
+                if (!error)
+                {
+                    list.Clear();
+                    LBox1.Items.Clear();
+                    list.AddRange(listTemp);
                     gObject.Clear(Color.White);
                     for (int i = 0; i < list.Count; i++)
                     {
                         LBox1.Items.Add(list[i].shape);
                         var FactoryTemp = list[i].Factory;
-                        //shape.pen.Color = list[i].shape.scolor;
                         Pen pentemp = new Pen(list[i].shape.scolor, list[i].shape.Pwidth);
                         FactoryTemp.Draw(list[i].shape, gObject, pentemp);
                     }
-
                     pct1.Image = DrawArrea;
                 }
             }
