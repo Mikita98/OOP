@@ -7,11 +7,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Media;
-
+using BaseDll;
 namespace OOP_Lab_1.Shapes
 {
     [Serializable]
-    public class Rectangles: Shape
+    public class Rectangles: BaseDll.Shape
     {
         
     }

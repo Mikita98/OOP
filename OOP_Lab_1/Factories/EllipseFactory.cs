@@ -11,14 +11,14 @@ using OOP_Lab_1.Shapes;
 namespace OOP_Lab_1.Factories
 {
     [Serializable]
-    class EllipseFactory: MainFactory
+    class EllipseFactory: FactoryDll.MainFactory
     {
-        public override Shape FactoryMethod()
+        public override BaseDll.Shape FactoryMethod()
         {
             return new Shapes.Ellipse();
         }
 
-        public override void Draw(Shape shape, Graphics gObject, Pen pen)
+        public override void Draw(BaseDll.Shape shape, Graphics gObject, Pen pen)
         {
             shape.ShapeParam();
             if (shape.x1 > shape.x2 && shape.y1 > shape.y2)

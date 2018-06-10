@@ -10,6 +10,13 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Reflection;
+using BaseDll;
+using FactoryDll;
+using GenPluginSystem;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace OOP_Lab_1
 {
@@ -17,14 +24,19 @@ namespace OOP_Lab_1
         Form1 : Form
     {
         Graphics gObject;
-        Shapes.Shape shape;
+        BaseDll.Shape shape;
         Bitmap DrawArrea;
         Pen pen;
         List<PaintElem> listTemp;
-        Factories.MainFactory Factory;
+        FactoryDll.MainFactory Factory;
         bool ispress = false;
         List<PaintElem> list;
+        List<PaintElem> ListClass;
+        public ICollection<Type> plugins;
+        public ICollection<Type> FactoryPlugins;
         int TempX, TempY = 0;
+        string lang = "Русский";
+
         public Form1()
         {
             InitializeComponent();
@@ -38,9 +50,9 @@ namespace OOP_Lab_1
         [Serializable]
         public class PaintElem
         {
-            public Shapes.Shape shape;
-            public Factories.MainFactory Factory;
-            public PaintElem(Shapes.Shape shape1, Factories.MainFactory Factory1)
+            public BaseDll.Shape shape;
+            public FactoryDll.MainFactory Factory;
+            public PaintElem(BaseDll.Shape shape1, FactoryDll.MainFactory Factory1)
             {
                 shape = shape1;
                 Factory = Factory1;
@@ -48,67 +60,137 @@ namespace OOP_Lab_1
         }
         private void CheckShape()
         {
-            RadioButton radioBtn = this.Controls.OfType<RadioButton>().Where(x => x.Checked).FirstOrDefault();
-            if (radioBtn != null)
-            {
-                switch (radioBtn.Name)
-                {
-                    case "Line":
-                        Factory = new Factories.LineFactory();
-                        shape = Factory.FactoryMethod();
-                        shape.scolor = colorDialog1.Color;
-                        shape.Pwidth = trackBar1.Value;
-                        pen = new Pen(shape.scolor, shape.Pwidth);
-                        break;
-                    case "Ellipse":
-                        Factory = new Factories.EllipseFactory();
-                        shape = Factory.FactoryMethod();
-                        shape.scolor = colorDialog1.Color;
-                        shape.Pwidth = trackBar1.Value;
-                        pen = new Pen(shape.scolor, shape.Pwidth);
-                        break;
-                    case "Rectangle":
-                        Factory = new Factories.RectangleFactory();
-                        shape = Factory.FactoryMethod();
-                        shape.scolor = colorDialog1.Color;
-                        shape.Pwidth = trackBar1.Value;
-                        pen = new Pen(shape.scolor, shape.Pwidth);
-                        break;
-                    case "Square":
-                        Factory = new Factories.SquareFactory();
-                        shape = Factory.FactoryMethod();
-                        shape.scolor = colorDialog1.Color;
-                        shape.Pwidth = trackBar1.Value;
-                        pen = new Pen(shape.scolor, shape.Pwidth);
-                        break;
-                    case "Triangle":
-                        Factory = new Factories.TriangleFactory();
-                        shape = Factory.FactoryMethod();
-                        shape.scolor = colorDialog1.Color;
-                        shape.Pwidth = trackBar1.Value;
-                        pen = new Pen(shape.scolor, shape.Pwidth);
-                        break;
-                    case "Circle":
-                        Factory = new Factories.CircleFactory();
-                        shape = Factory.FactoryMethod();
-                        shape.scolor = colorDialog1.Color;
-                        shape.Pwidth = trackBar1.Value;
-                        pen = new Pen(shape.scolor, shape.Pwidth);
-                        break;
+           
+            SelectClass(LBoxClass.SelectedIndex);
+        }
 
+        private void SelectClass(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    Factory = new Factories.LineFactory();
+                    shape = Factory.FactoryMethod();
+                    shape.scolor = colorDialog1.Color;
+                    shape.Pwidth = trackBar1.Value;
+                    pen = new Pen(shape.scolor, shape.Pwidth);
+                    break;
+                case 1:
+                    Factory = new Factories.EllipseFactory();
+                    shape = Factory.FactoryMethod();
+                    shape.scolor = colorDialog1.Color;
+                    shape.Pwidth = trackBar1.Value;
+                    pen = new Pen(shape.scolor, shape.Pwidth);
+                    break;
+                case 2:
+                    Factory = new Factories.CircleFactory();
+                    shape = Factory.FactoryMethod();
+                    shape.scolor = colorDialog1.Color;
+                    shape.Pwidth = trackBar1.Value;
+                    pen = new Pen(shape.scolor, shape.Pwidth);
+                    break;
+                case 3:
+                    Factory = new Factories.RectangleFactory();
+                    shape = Factory.FactoryMethod();
+                    shape.scolor = colorDialog1.Color;
+                    shape.Pwidth = trackBar1.Value;
+                    pen = new Pen(shape.scolor, shape.Pwidth);
+                    break;
+                case 4:
+                    Factory = new Factories.SquareFactory();
+                    shape = Factory.FactoryMethod();
+                    shape.scolor = colorDialog1.Color;
+                    shape.Pwidth = trackBar1.Value;
+                    pen = new Pen(shape.scolor, shape.Pwidth);
+                    break;
+                case 5:
+                    Factory = new Factories.TriangleFactory();
+                    shape = Factory.FactoryMethod();
+                    shape.scolor = colorDialog1.Color;
+                    shape.Pwidth = trackBar1.Value;
+                    pen = new Pen(shape.scolor, shape.Pwidth);
+                    break;
+                default:
+                    foreach (var p in FactoryPlugins)
+                    {
+                        if (LBoxClass.Text + "Factory" == p.Name.ToString())
+                        {
+                            Factory = (FactoryDll.MainFactory)Activator.CreateInstance(p);
+                            //shape = (BaseDll.Shape)Activator.CreateInstance(p, "Line");
+                            shape = Factory.FactoryMethod();
+                            shape.scolor = colorDialog1.Color;
+                            shape.Pwidth = trackBar1.Value;
+                            pen = new Pen(shape.scolor, shape.Pwidth);
+                            //IsOriginalShape = false;
+                            break;
+                        }
+                    }
+                    break;
+
+            }
+        }
+
+        private void InitialLang()
+        {
+            XDocument xdoc = XDocument.Load("info.xml");
+            foreach (XElement xe in xdoc.Elements("data").ToList())
+            {
+                lang = xe.Element("LangName").Value;
+                ChangeLang();
+            }
+            if (lang == "Русский")
+            {
+                MRus.Checked = true;
+                MEng.Checked = false;
+            }
+            else
+            {
+                if(lang == "English")
+                {
+                    MRus.Checked = false;
+                    MEng.Checked = true;
                 }
             }
         }
 
         private void Initial()
         {
+            InitialLang();
             DrawArrea = new Bitmap(pct1.Width, pct1.Height);
             gObject = Graphics.FromImage(DrawArrea);
             colorDialog1.Color = Color.Black;
             list = new List<PaintElem>();
+            ListClass = new List<PaintElem>();
             Pcolor.BackColor = colorDialog1.Color;
             ispress = false;
-           }
+            Factory = new Factories.LineFactory();
+            shape = Factory.FactoryMethod();
+            InitialClass(shape, Factory);
+            Factory = new Factories.EllipseFactory();
+            shape = Factory.FactoryMethod();
+            InitialClass(shape, Factory);
+            Factory = new Factories.CircleFactory();
+            shape = Factory.FactoryMethod();
+            InitialClass(shape, Factory);
+            Factory = new Factories.RectangleFactory();
+            shape = Factory.FactoryMethod();
+            InitialClass(shape, Factory);
+            Factory = new Factories.SquareFactory();
+            shape = Factory.FactoryMethod();
+            InitialClass(shape, Factory);
+            Factory = new Factories.TriangleFactory();
+            shape = Factory.FactoryMethod();
+            InitialClass(shape, Factory);
+            LBoxClass.SelectedIndex = LBoxClass.Items.Count - 1;
+            SelectClass(LBoxClass.SelectedIndex);
+        }
+
+        private void InitialClass(BaseDll.Shape shape, FactoryDll.MainFactory Factory)
+        {
+            var Paint = new PaintElem(shape, Factory);
+            ListClass.Add(Paint);
+            LBoxClass.Items.Add(Paint.shape.GetType().Name.ToString());
+        }
 
         private void DrawFigures()
         {
@@ -116,48 +198,13 @@ namespace OOP_Lab_1
             for (int i=0; i < list.Count; i++)
             {
                 var FactoryTemp = list[i].Factory;
-                //shape.pen.Color = list[i].shape.scolor;
                 Pen pentemp = new Pen(list[i].shape.scolor, list[i].shape.Pwidth);
                 FactoryTemp.Draw(list[i].shape, gObject, pentemp);
             }
             pct1.Image = DrawArrea;
         }
 
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Line_Click(object sender, EventArgs e)
-        {
-            CheckShape();
-        }
-
-        private void Rectangle_Click(object sender, EventArgs e)
-        {
-            CheckShape();
-        }
-
-        private void Ellipse_Click(object sender, EventArgs e)
-        {
-            CheckShape();
-        }
-
-        private void Circle_Click(object sender, EventArgs e)
-        {
-            CheckShape();
-        }
-
-        private void Triangle_Click(object sender, EventArgs e)
-        {
-            CheckShape();
-        }
-
-        private void Square_Click(object sender, EventArgs e)
-        {
-            CheckShape();
-        }
-
+        
         private void clearbutton_Click(object sender, EventArgs e)
         {
             gObject.Clear(Color.White);
@@ -176,11 +223,8 @@ namespace OOP_Lab_1
             if (!ispress)
             {
                 ispress = true;
-                //CheckShape();
                 TempX = e.X;
                 TempY = e.Y;
-                /*shape.x1 = e.X;
-                shape.y1 = e.Y;*/
             }
             else
             {
@@ -197,7 +241,7 @@ namespace OOP_Lab_1
             }
             else
             {
-                CheckShape();
+                SelectClass(LBoxClass.SelectedIndex);
                 shape.x1 = TempX;
                 shape.y1 = TempY;
                 x2.Text = (e.X).ToString();
@@ -266,6 +310,11 @@ namespace OOP_Lab_1
                     MessageBox.Show(b.Message, "Ошибка сериализации", MessageBoxButtons.OK,
                         MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
+                if (!error)
+                {
+                    MessageBox.Show("Сохранение успешно выполнено", "Сохранение", MessageBoxButtons.OK,
+                       MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                }
             }
         }
 
@@ -326,6 +375,163 @@ namespace OOP_Lab_1
                     FactoryTemp.Draw(list[i].shape, gObject, pentemp);
                 }
                 pct1.Image = DrawArrea;
+            }
+        }
+
+        private void LBoxClass_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            SelectClass(LBoxClass.SelectedIndex);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            plugins = PluginLoader<BaseDll.Shape>.LoadPlugins("D:\\Visual Studio Projects\\OOP_Lab_1_test\\OOP\\OOP_Lab_1\\Plugins\\LineFactory\\LineFactory\\bin\\Debug");
+            FactoryPlugins = FactoryLoader<FactoryDll.MainFactory>.LoadPlugins("D:\\Visual Studio Projects\\OOP_Lab_1_test\\OOP\\OOP_Lab_1\\Plugins\\LineFactory\\LineFactory\\bin\\Debug");
+            if (plugins != null)
+            {
+                foreach (var p in plugins)
+                {
+                    LBoxClass.Items.Add(p.Name.ToString());
+                    //  Shape pl = (Shape)Activator.CreateInstance(p, Color.Black, 5, 25, 600, 600, 600);
+                    //  FList.AddToList(pl);
+                    //  ReDraw();
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void ChangeLang()
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load("info.xml");
+            // получим корневой элемент
+            XmlElement xRoot = xDoc.DocumentElement;
+            // обход всех узлов в корневом элементе
+            foreach (XmlNode xnode in xRoot)
+            {
+                // получаем атрибут name
+                if (xnode.Attributes.Count > 0)
+                {
+                    XmlNode attr = xnode.Attributes.GetNamedItem("name");
+                    if (attr == null)
+                    {
+                        MessageBox.Show("Ошибка прочтения файла", "Ошибка XML ", MessageBoxButtons.OK,
+                         MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    else
+                    {
+                        if (attr.Value.ToString() == lang)
+                        {
+                            foreach (XmlNode childnode in xnode.ChildNodes)
+                            {
+                                if (childnode.Name == "LangLoad")
+                                {
+                                    MOpen.Text = childnode.InnerText;
+                                }
+                                // если узел age
+                                if (childnode.Name == "LangSave")
+                                {
+                                    MSave.Text = childnode.InnerText;
+                                }
+                                if (childnode.Name == "LangAdd")
+                                {
+                                    Baddll.Text = childnode.InnerText;
+                                }
+                                if (childnode.Name == "LangClean")
+                                {
+                                    clearbutton.Text = childnode.InnerText;
+                                }
+                                if (childnode.Name == "LangDel")
+                                {
+                                    clearfig.Text = childnode.InnerText;
+                                }
+                                if (childnode.Name == "LangChoose")
+                                {
+                                    Bcolor.Text = childnode.InnerText;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void русскийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MRus.Checked = !(MRus.Checked);
+            MEng.Checked = !(MEng.Checked);
+            
+        }
+
+        private void MEng_Click(object sender, EventArgs e)
+        {
+            MEng.Checked = !(MEng.Checked);
+            MRus.Checked = !(MRus.Checked);
+            if (MRus.Checked)
+            {
+                lang = "Русский";
+            }
+            else
+            {
+                lang = "English";
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+            
+       }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void MRus_CheckedChanged(object sender, EventArgs e)
+        {
+            if (MRus.Checked)
+            {
+                lang = "Русский";
+            }
+            else
+            {
+                lang = "English";
+            }
+            ChangeLang();
+
+        }
+
+        private void MEng_CheckedChanged(object sender, EventArgs e)
+        {
+            if (MRus.Checked)
+            {
+                lang = "Русский";
+            }
+            else
+            {
+                lang = "English";
+            }
+            ChangeLang();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            XDocument xdoc = XDocument.Load("info.xml");
+            foreach (XElement xe in xdoc.Elements("data").ToList())
+            {
+                xe.Element("LangName").Value = lang;
+                xdoc.Save("info.xml");
             }
         }
 

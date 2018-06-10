@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Line = new System.Windows.Forms.RadioButton();
-            this.Rectangle = new System.Windows.Forms.RadioButton();
-            this.Ellipse = new System.Windows.Forms.RadioButton();
-            this.Circle = new System.Windows.Forms.RadioButton();
-            this.Triangle = new System.Windows.Forms.RadioButton();
-            this.Square = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.clearbutton = new System.Windows.Forms.Button();
             this.x1 = new System.Windows.Forms.TextBox();
@@ -50,81 +44,17 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MSave = new System.Windows.Forms.ToolStripMenuItem();
             this.MOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.ControlPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.LBox1 = new System.Windows.Forms.ListBox();
             this.clearfig = new System.Windows.Forms.Button();
+            this.LBoxClass = new System.Windows.Forms.ListBox();
+            this.Baddll = new System.Windows.Forms.Button();
+            this.языкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MRus = new System.Windows.Forms.ToolStripMenuItem();
+            this.MEng = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pct1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Line
-            // 
-            this.Line.Checked = true;
-            this.Line.Location = new System.Drawing.Point(12, 42);
-            this.Line.Name = "Line";
-            this.Line.Size = new System.Drawing.Size(100, 25);
-            this.Line.TabIndex = 1;
-            this.Line.TabStop = true;
-            this.Line.Text = "Линия";
-            this.Line.UseVisualStyleBackColor = true;
-            this.Line.Click += new System.EventHandler(this.Line_Click);
-            // 
-            // Rectangle
-            // 
-            this.Rectangle.Location = new System.Drawing.Point(12, 69);
-            this.Rectangle.Name = "Rectangle";
-            this.Rectangle.Size = new System.Drawing.Size(170, 25);
-            this.Rectangle.TabIndex = 2;
-            this.Rectangle.TabStop = true;
-            this.Rectangle.Text = "Прямоугольник";
-            this.Rectangle.UseVisualStyleBackColor = true;
-            this.Rectangle.Click += new System.EventHandler(this.Rectangle_Click);
-            // 
-            // Ellipse
-            // 
-            this.Ellipse.Location = new System.Drawing.Point(12, 96);
-            this.Ellipse.Name = "Ellipse";
-            this.Ellipse.Size = new System.Drawing.Size(100, 25);
-            this.Ellipse.TabIndex = 3;
-            this.Ellipse.TabStop = true;
-            this.Ellipse.Text = "Эллипс";
-            this.Ellipse.UseVisualStyleBackColor = true;
-            this.Ellipse.Click += new System.EventHandler(this.Ellipse_Click);
-            // 
-            // Circle
-            // 
-            this.Circle.Location = new System.Drawing.Point(12, 123);
-            this.Circle.Name = "Circle";
-            this.Circle.Size = new System.Drawing.Size(100, 25);
-            this.Circle.TabIndex = 4;
-            this.Circle.TabStop = true;
-            this.Circle.Text = "Круг";
-            this.Circle.UseVisualStyleBackColor = true;
-            this.Circle.Click += new System.EventHandler(this.Circle_Click);
-            // 
-            // Triangle
-            // 
-            this.Triangle.Location = new System.Drawing.Point(12, 150);
-            this.Triangle.Name = "Triangle";
-            this.Triangle.Size = new System.Drawing.Size(130, 21);
-            this.Triangle.TabIndex = 5;
-            this.Triangle.TabStop = true;
-            this.Triangle.Text = "Треугольник";
-            this.Triangle.UseVisualStyleBackColor = true;
-            this.Triangle.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
-            this.Triangle.Click += new System.EventHandler(this.Triangle_Click);
-            // 
-            // Square
-            // 
-            this.Square.Location = new System.Drawing.Point(12, 177);
-            this.Square.Name = "Square";
-            this.Square.Size = new System.Drawing.Size(120, 21);
-            this.Square.TabIndex = 6;
-            this.Square.TabStop = true;
-            this.Square.Text = "Квадрат";
-            this.Square.UseVisualStyleBackColor = true;
-            this.Square.Click += new System.EventHandler(this.Square_Click);
             // 
             // clearbutton
             // 
@@ -239,10 +169,11 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MSave,
-            this.MOpen});
+            this.MOpen,
+            this.языкToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1743, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1515, 28);
             this.menuStrip1.TabIndex = 19;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -259,15 +190,6 @@
             this.MOpen.Size = new System.Drawing.Size(79, 24);
             this.MOpen.Text = "Открыть";
             this.MOpen.Click += new System.EventHandler(this.MOpen_Click);
-            // 
-            // ControlPanel
-            // 
-            this.ControlPanel.AutoScroll = true;
-            this.ControlPanel.AutoSize = true;
-            this.ControlPanel.Location = new System.Drawing.Point(1540, 32);
-            this.ControlPanel.Name = "ControlPanel";
-            this.ControlPanel.Size = new System.Drawing.Size(200, 116);
-            this.ControlPanel.TabIndex = 20;
             // 
             // LBox1
             // 
@@ -289,14 +211,63 @@
             this.clearfig.UseVisualStyleBackColor = true;
             this.clearfig.Click += new System.EventHandler(this.clearfig_Click);
             // 
+            // LBoxClass
+            // 
+            this.LBoxClass.FormattingEnabled = true;
+            this.LBoxClass.ItemHeight = 16;
+            this.LBoxClass.Location = new System.Drawing.Point(12, 31);
+            this.LBoxClass.Name = "LBoxClass";
+            this.LBoxClass.Size = new System.Drawing.Size(336, 164);
+            this.LBoxClass.TabIndex = 23;
+            this.LBoxClass.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LBoxClass_MouseDoubleClick);
+            // 
+            // Baddll
+            // 
+            this.Baddll.Location = new System.Drawing.Point(185, 216);
+            this.Baddll.Name = "Baddll";
+            this.Baddll.Size = new System.Drawing.Size(121, 23);
+            this.Baddll.TabIndex = 24;
+            this.Baddll.Text = "Добавить DLL ";
+            this.Baddll.UseVisualStyleBackColor = true;
+            this.Baddll.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // языкToolStripMenuItem
+            // 
+            this.языкToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MRus,
+            this.MEng});
+            this.языкToolStripMenuItem.Name = "языкToolStripMenuItem";
+            this.языкToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.языкToolStripMenuItem.Text = "Язык";
+            // 
+            // MRus
+            // 
+            this.MRus.Checked = true;
+            this.MRus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MRus.Name = "MRus";
+            this.MRus.Size = new System.Drawing.Size(181, 26);
+            this.MRus.Text = "Русский";
+            this.MRus.CheckedChanged += new System.EventHandler(this.MRus_CheckedChanged);
+            this.MRus.Click += new System.EventHandler(this.русскийToolStripMenuItem_Click);
+            // 
+            // MEng
+            // 
+            this.MEng.Name = "MEng";
+            this.MEng.Size = new System.Drawing.Size(181, 26);
+            this.MEng.Text = "English";
+            this.MEng.CheckedChanged += new System.EventHandler(this.MEng_CheckedChanged);
+            this.MEng.Click += new System.EventHandler(this.MEng_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1743, 694);
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.ClientSize = new System.Drawing.Size(1515, 694);
+            this.Controls.Add(this.Baddll);
+            this.Controls.Add(this.LBoxClass);
             this.Controls.Add(this.clearfig);
             this.Controls.Add(this.LBox1);
-            this.Controls.Add(this.ControlPanel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.Pcolor);
@@ -309,17 +280,15 @@
             this.Controls.Add(this.y1);
             this.Controls.Add(this.x1);
             this.Controls.Add(this.clearbutton);
-            this.Controls.Add(this.Square);
-            this.Controls.Add(this.Triangle);
-            this.Controls.Add(this.Circle);
-            this.Controls.Add(this.Ellipse);
-            this.Controls.Add(this.Rectangle);
-            this.Controls.Add(this.Line);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Графический редактор";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Leave += new System.EventHandler(this.Form1_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.pct1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -330,12 +299,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.RadioButton Line;
-        private System.Windows.Forms.RadioButton Rectangle;
-        private System.Windows.Forms.RadioButton Ellipse;
-        private System.Windows.Forms.RadioButton Circle;
-        private System.Windows.Forms.RadioButton Triangle;
-        private System.Windows.Forms.RadioButton Square;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button clearbutton;
         private System.Windows.Forms.TextBox x1;
@@ -352,8 +315,12 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem MSave;
         private System.Windows.Forms.ToolStripMenuItem MOpen;
-        private System.Windows.Forms.FlowLayoutPanel ControlPanel;
         private System.Windows.Forms.ListBox LBox1;
         private System.Windows.Forms.Button clearfig;
+        private System.Windows.Forms.ListBox LBoxClass;
+        private System.Windows.Forms.Button Baddll;
+        private System.Windows.Forms.ToolStripMenuItem языкToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MRus;
+        private System.Windows.Forms.ToolStripMenuItem MEng;
     }
 }

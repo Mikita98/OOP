@@ -35,6 +35,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BaseDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>BaseClass\BaseDll.dll</HintPath>
+    </Reference>
+    <Reference Include="FactoryDll">
+      <HintPath>MainFactory\FactoryDll\bin\Debug\FactoryDll.dll</HintPath>
+    </Reference>
+    <Reference Include="LineLib">
+      <HintPath>Plugins\LineLib\LineLib\bin\Debug\LineLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PluginLoader">
+      <HintPath>PluginLoader\PluginLoader\bin\Debug\PluginLoader.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -48,6 +61,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml.Serialization" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -103,6 +117,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BaseClass\BaseDll.dll" />
+    <Content Include="BaseDll.dll" />
+    <Content Include="FirstLib.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

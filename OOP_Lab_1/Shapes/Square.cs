@@ -7,11 +7,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Drawing;
-
+using BaseDll;
 namespace OOP_Lab_1.Shapes
 {
     [Serializable]
-    public class Square:Shape
+    public class Square: BaseDll.Shape
     {
     
     }

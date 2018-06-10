@@ -10,14 +10,14 @@ using System.Windows.Shapes;
 namespace OOP_Lab_1.Factories
 {
     [Serializable]
-    class TriangleFactory:MainFactory
+    class TriangleFactory: FactoryDll.MainFactory
     {
-        public override Shapes.Shape FactoryMethod()
+        public override BaseDll.Shape FactoryMethod()
         {
             return new Shapes.Triangle();
         }
 
-        public override void Draw(Shapes.Shape shape, Graphics gObject, Pen pen)
+        public override void Draw(BaseDll.Shape shape, Graphics gObject, Pen pen)
         {
 
             Point point1 = new Point(shape.x1, shape.y1);

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <Language>
+      <LangName>English</LangName>
+      <LangLoad>Load</LangLoad>
+      <LangSave>Save</LangSave>
+      <LangClean>Clean</LangClean>
+      <LangAdd>Load DLL</LangAdd>
+      <LangChoose>Choose_color</LangChoose>
+      <LangDel>Delete_figure</LangDel>
+    </Language>
+    <Language>
+      <LangName>Русский</LangName>
+      <LangLoad>Загрузить</LangLoad>
+      <LangSave>Сохранить</LangSave>
+      <LangClean>Очистить</LangClean>
+      <LangAdd>Загрузить DLL</LangAdd>
+      <LangChoose>Выбрать_цвет</LangChoose>
+      <LangDel>Удалить_фигуру</LangDel>
+     </Language>
+</data>

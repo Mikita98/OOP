@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Drawing;
+
+namespace LineLib
+{
+    
+        class Line : Shapes.Shape
+        {
+
+        }
+        class LineFactory : Factories.MainFactory
+        {
+            public override Shapes.Shape FactoryMethod()
+            {
+                return new Line();
+            }
+
+            public override void Draw(Shapes.Shape shape, Graphics gObject, Pen pen)
+            {
+                gObject.DrawLine(pen, shape.x1, shape.y1, shape.x2, shape.y2);
+            }
+        }
+}

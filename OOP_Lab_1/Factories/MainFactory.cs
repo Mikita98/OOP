@@ -12,8 +12,8 @@ namespace OOP_Lab_1.Factories
     [Serializable]
     public abstract class MainFactory
     {
-        public abstract Shapes.Shape FactoryMethod();
-        public virtual void Draw(Shapes.Shape shape, Graphics gObject, Pen pen){
+        public abstract BaseDll.Shape FactoryMethod();
+        public virtual void Draw( BaseDll.Shape shape, Graphics gObject, Pen pen){
         }
     }
 }

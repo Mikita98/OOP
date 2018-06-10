@@ -8,11 +8,11 @@ using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Media;
 using System.Drawing;
-
+using BaseDll;
 namespace OOP_Lab_1.Shapes
 {
     [Serializable]
-    public class Ellipse: Shape
+    public class Ellipse: BaseDll.Shape
     {
         
     }

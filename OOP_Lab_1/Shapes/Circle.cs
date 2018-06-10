@@ -12,7 +12,7 @@ using System.Drawing;
 namespace OOP_Lab_1.Shapes
 {
     [Serializable]
-    public class Circle : Shape
+    public class Circle : BaseDll.Shape
     {
         
     }

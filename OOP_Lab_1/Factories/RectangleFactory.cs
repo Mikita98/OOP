@@ -10,14 +10,14 @@ using System.Drawing;
 namespace OOP_Lab_1.Factories
 {
     [Serializable]
-    class RectangleFactory: MainFactory
+    class RectangleFactory: FactoryDll.MainFactory
     {
-        public override Shapes.Shape FactoryMethod()
+        public override BaseDll.Shape FactoryMethod()
         {
             return new Shapes.Rectangles();
         }
 
-        public override void Draw(Shapes.Shape shape, Graphics gObject, Pen pen)
+        public override void Draw(BaseDll.Shape shape, Graphics gObject, Pen pen)
         {
                     if (shape.x1 > shape.x2 && shape.y1 > shape.y2)
                     {
