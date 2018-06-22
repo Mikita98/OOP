@@ -44,13 +44,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MSave = new System.Windows.Forms.ToolStripMenuItem();
             this.MOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.языкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MRus = new System.Windows.Forms.ToolStripMenuItem();
+            this.MEng = new System.Windows.Forms.ToolStripMenuItem();
             this.LBox1 = new System.Windows.Forms.ListBox();
             this.clearfig = new System.Windows.Forms.Button();
             this.LBoxClass = new System.Windows.Forms.ListBox();
             this.Baddll = new System.Windows.Forms.Button();
-            this.языкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MRus = new System.Windows.Forms.ToolStripMenuItem();
-            this.MEng = new System.Windows.Forms.ToolStripMenuItem();
+            this.темаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.светлаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.тёмнаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pct1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -170,7 +173,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MSave,
             this.MOpen,
-            this.языкToolStripMenuItem});
+            this.языкToolStripMenuItem,
+            this.темаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1515, 28);
@@ -190,6 +194,33 @@
             this.MOpen.Size = new System.Drawing.Size(79, 24);
             this.MOpen.Text = "Открыть";
             this.MOpen.Click += new System.EventHandler(this.MOpen_Click);
+            // 
+            // языкToolStripMenuItem
+            // 
+            this.языкToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MRus,
+            this.MEng});
+            this.языкToolStripMenuItem.Name = "языкToolStripMenuItem";
+            this.языкToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.языкToolStripMenuItem.Text = "Язык";
+            // 
+            // MRus
+            // 
+            this.MRus.Checked = true;
+            this.MRus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MRus.Name = "MRus";
+            this.MRus.Size = new System.Drawing.Size(138, 26);
+            this.MRus.Text = "Русский";
+            this.MRus.CheckedChanged += new System.EventHandler(this.MRus_CheckedChanged);
+            this.MRus.Click += new System.EventHandler(this.русскийToolStripMenuItem_Click);
+            // 
+            // MEng
+            // 
+            this.MEng.Name = "MEng";
+            this.MEng.Size = new System.Drawing.Size(138, 26);
+            this.MEng.Text = "English";
+            this.MEng.CheckedChanged += new System.EventHandler(this.MEng_CheckedChanged);
+            this.MEng.Click += new System.EventHandler(this.MEng_Click);
             // 
             // LBox1
             // 
@@ -231,32 +262,28 @@
             this.Baddll.UseVisualStyleBackColor = true;
             this.Baddll.Click += new System.EventHandler(this.button1_Click);
             // 
-            // языкToolStripMenuItem
+            // темаToolStripMenuItem
             // 
-            this.языкToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MRus,
-            this.MEng});
-            this.языкToolStripMenuItem.Name = "языкToolStripMenuItem";
-            this.языкToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
-            this.языкToolStripMenuItem.Text = "Язык";
+            this.темаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.светлаяToolStripMenuItem,
+            this.тёмнаяToolStripMenuItem});
+            this.темаToolStripMenuItem.Name = "темаToolStripMenuItem";
+            this.темаToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.темаToolStripMenuItem.Text = "Тема";
             // 
-            // MRus
+            // светлаяToolStripMenuItem
             // 
-            this.MRus.Checked = true;
-            this.MRus.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MRus.Name = "MRus";
-            this.MRus.Size = new System.Drawing.Size(181, 26);
-            this.MRus.Text = "Русский";
-            this.MRus.CheckedChanged += new System.EventHandler(this.MRus_CheckedChanged);
-            this.MRus.Click += new System.EventHandler(this.русскийToolStripMenuItem_Click);
+            this.светлаяToolStripMenuItem.Name = "светлаяToolStripMenuItem";
+            this.светлаяToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.светлаяToolStripMenuItem.Text = "Светлая";
+            this.светлаяToolStripMenuItem.Click += new System.EventHandler(this.светлаяToolStripMenuItem_Click);
             // 
-            // MEng
+            // тёмнаяToolStripMenuItem
             // 
-            this.MEng.Name = "MEng";
-            this.MEng.Size = new System.Drawing.Size(181, 26);
-            this.MEng.Text = "English";
-            this.MEng.CheckedChanged += new System.EventHandler(this.MEng_CheckedChanged);
-            this.MEng.Click += new System.EventHandler(this.MEng_Click);
+            this.тёмнаяToolStripMenuItem.Name = "тёмнаяToolStripMenuItem";
+            this.тёмнаяToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.тёмнаяToolStripMenuItem.Text = "Тёмная";
+            this.тёмнаяToolStripMenuItem.Click += new System.EventHandler(this.тёмнаяToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -322,5 +349,8 @@
         private System.Windows.Forms.ToolStripMenuItem языкToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MRus;
         private System.Windows.Forms.ToolStripMenuItem MEng;
+        private System.Windows.Forms.ToolStripMenuItem темаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem светлаяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem тёмнаяToolStripMenuItem;
     }
 }

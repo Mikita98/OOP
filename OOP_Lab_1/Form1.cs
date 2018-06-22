@@ -132,11 +132,22 @@ namespace OOP_Lab_1
 
         private void InitialLang()
         {
-            XDocument xdoc = XDocument.Load("info.xml");
-            foreach (XElement xe in xdoc.Elements("data").ToList())
+            try
             {
-                lang = xe.Element("LangName").Value;
-                ChangeLang();
+                XDocument xdoc = XDocument.Load("info.xml");
+                foreach (XElement xe in xdoc.Elements("data").ToList())
+                {
+                    lang = xe.Element("LangName").Value;
+                    ChangeLang();
+                    this.BackColor = Color.FromArgb(Convert.ToInt32(xe.Element("FormColor").Value));
+                }
+            }
+            catch(Exception ex)
+            {
+                if (ex is FileNotFoundException || ex is XmlException)
+                MessageBox.Show(ex.Message, "Ошибка загрузки XML, будут установлены значения по умолчанию", MessageBoxButtons.OK,
+                       MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                DefaultForm();
             }
             if (lang == "Русский")
             {
@@ -404,60 +415,81 @@ namespace OOP_Lab_1
            
         }
 
+        private void DefaultForm()
+        {
+                MOpen.Text = "Загрузить";
+                MSave.Text = "Сохранить";
+                Baddll.Text = "Добавить DLL";
+                clearbutton.Text = "Очистить";
+                clearfig.Text = "Удалить фигуру";
+                Bcolor.Text = "Изменить цвет";
+            this.BackColor = Color.White;
+        }
+
         private void ChangeLang()
         {
+            try {
             XmlDocument xDoc = new XmlDocument();
             xDoc.Load("info.xml");
             // получим корневой элемент
             XmlElement xRoot = xDoc.DocumentElement;
-            // обход всех узлов в корневом элементе
-            foreach (XmlNode xnode in xRoot)
-            {
-                // получаем атрибут name
-                if (xnode.Attributes.Count > 0)
+                // обход всех узлов в корневом элементе
+                foreach (XmlNode xnode in xRoot)
                 {
-                    XmlNode attr = xnode.Attributes.GetNamedItem("name");
-                    if (attr == null)
+                    // получаем атрибут name
+                    if (xnode.Attributes.Count > 0)
                     {
-                        MessageBox.Show("Ошибка прочтения файла", "Ошибка XML ", MessageBoxButtons.OK,
-                         MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                    }
-                    else
-                    {
-                        if (attr.Value.ToString() == lang)
+                        XmlNode attr = xnode.Attributes.GetNamedItem("name");
+                        if (attr == null)
                         {
-                            foreach (XmlNode childnode in xnode.ChildNodes)
+                            MessageBox.Show("Ошибка прочтения файла", "Ошибка XML ", MessageBoxButtons.OK,
+                             MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        }
+                        else
+                        {
+                            if (attr.Value.ToString() == lang)
                             {
-                                if (childnode.Name == "LangLoad")
+                                foreach (XmlNode childnode in xnode.ChildNodes)
                                 {
-                                    MOpen.Text = childnode.InnerText;
-                                }
-                                // если узел age
-                                if (childnode.Name == "LangSave")
-                                {
-                                    MSave.Text = childnode.InnerText;
-                                }
-                                if (childnode.Name == "LangAdd")
-                                {
-                                    Baddll.Text = childnode.InnerText;
-                                }
-                                if (childnode.Name == "LangClean")
-                                {
-                                    clearbutton.Text = childnode.InnerText;
-                                }
-                                if (childnode.Name == "LangDel")
-                                {
-                                    clearfig.Text = childnode.InnerText;
-                                }
-                                if (childnode.Name == "LangChoose")
-                                {
-                                    Bcolor.Text = childnode.InnerText;
+                                    if (childnode.Name == "LangLoad")
+                                    {
+                                        MOpen.Text = childnode.InnerText;
+                                    }
+                                    // если узел age
+                                    if (childnode.Name == "LangSave")
+                                    {
+                                        MSave.Text = childnode.InnerText;
+                                    }
+                                    if (childnode.Name == "LangAdd")
+                                    {
+                                        Baddll.Text = childnode.InnerText;
+                                    }
+                                    if (childnode.Name == "LangClean")
+                                    {
+                                        clearbutton.Text = childnode.InnerText;
+                                    }
+                                    if (childnode.Name == "LangDel")
+                                    {
+                                        clearfig.Text = childnode.InnerText;
+                                    }
+                                    if (childnode.Name == "LangChoose")
+                                    {
+                                        Bcolor.Text = childnode.InnerText;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
+            }
+            catch(Exception x)
+            {
+                if (x is FileNotFoundException || x is XmlException)
+                {
+                    MessageBox.Show(x.Message, "Ошибка считывания XML, будут установлены стандартные значения", MessageBoxButtons.OK,
+                       MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    DefaultForm();
+                }
             }
         }
 
@@ -527,12 +559,35 @@ namespace OOP_Lab_1
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            XDocument xdoc = XDocument.Load("info.xml");
-            foreach (XElement xe in xdoc.Elements("data").ToList())
+            XDocument xdoc;
+            try
             {
-                xe.Element("LangName").Value = lang;
-                xdoc.Save("info.xml");
+                xdoc = XDocument.Load("info.xml");
+                foreach (XElement xe in xdoc.Elements("data").ToList())
+                {
+                    xe.Element("LangName").Value = lang;
+                    xe.Element("FormColor").Value = this.BackColor.ToArgb().ToString();
+                    xdoc.Save("info.xml");
+                }
             }
+            catch (Exception x)
+            {
+                if (x is FileNotFoundException || x is XmlException)
+                {
+                    MessageBox.Show(x.Message, "Ошибка сохранения в XML", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                }
+            }
+        }
+
+        private void светлаяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.BackColor = Color.FromArgb(229, 229, 232);
+        }
+
+        private void тёмнаяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.BackColor = Color.FromArgb(61, 61, 56);
         }
 
         private void clearfig_Click(object sender, EventArgs e)

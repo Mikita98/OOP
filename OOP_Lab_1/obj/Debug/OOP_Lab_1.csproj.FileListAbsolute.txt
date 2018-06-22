@@ -29,3 +29,10 @@ D:\Visual Studio Projects\OOP_Lab_1_test\OOP\OOP_Lab_1\bin\Debug\PluginLoader.dl
 D:\Visual Studio Projects\OOP_Lab_1_test\OOP\OOP_Lab_1\bin\Debug\PluginLoader.pdb
 D:\Visual Studio Projects\OOP_Lab_1_test\OOP\OOP_Lab_1\bin\Debug\LineLib.dll
 D:\Visual Studio Projects\OOP_Lab_1_test\OOP\OOP_Lab_1\bin\Debug\LineLib.pdb
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\BaseDll.dll
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\FactoryDll.dll
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\LineLib.dll
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\PluginLoader.dll
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\FactoryDll.pdb
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\LineLib.pdb
+D:\Visual Studio Projects\OOP_Lab_1\OOP\OOP_Lab_1\bin\Debug\PluginLoader.pdb
