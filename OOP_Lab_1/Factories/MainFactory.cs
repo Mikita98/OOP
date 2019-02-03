@@ -13,7 +13,6 @@ namespace OOP_Lab_1.Factories
     public abstract class MainFactory
     {
         public abstract BaseDll.Shape FactoryMethod();
-        public virtual void Draw( BaseDll.Shape shape, Graphics gObject, Pen pen){
-        }
+        public virtual void Draw( BaseDll.Shape shape, Graphics gObject, Pen pen){}
     }
 }

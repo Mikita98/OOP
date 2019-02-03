@@ -65,6 +65,7 @@ namespace OOP_Lab_1.Factories
         public override void Draw(BaseDll.Shape shape, Graphics gObject, Pen pen)
         {
             bool xby;
+
             xby = CalcWidth(shape);
                 if (shape.x1 > shape.x2 && shape.y1 > shape.y2)
                 {
@@ -82,7 +83,6 @@ namespace OOP_Lab_1.Factories
                 {
                      Draw4(shape, gObject, pen, xby);
                 }
-            
          }
     }
 }
