@@ -116,10 +116,12 @@ namespace OOP_Lab_1
                         if (LBoxClass.Text + "Factory" == p.Name.ToString())
                         {
                             Factory = (FactoryDll.MainFactory)Activator.CreateInstance(p);
+                            //shape = (BaseDll.Shape)Activator.CreateInstance(p, "Line");
                             shape = Factory.FactoryMethod();
                             shape.scolor = colorDialog1.Color;
                             shape.Pwidth = trackBar1.Value;
                             pen = new Pen(shape.scolor, shape.Pwidth);
+                            //IsOriginalShape = false;
                             break;
                         }
                     }
@@ -401,6 +403,9 @@ namespace OOP_Lab_1
                 foreach (var p in plugins)
                 {
                     LBoxClass.Items.Add(p.Name.ToString());
+                    //  Shape pl = (Shape)Activator.CreateInstance(p, Color.Black, 5, 25, 600, 600, 600);
+                    //  FList.AddToList(pl);
+                    //  ReDraw();
                 }
             }
         }
@@ -426,15 +431,15 @@ namespace OOP_Lab_1
             try {
             XmlDocument xDoc = new XmlDocument();
             xDoc.Load("info.xml");
-            
+            // получим корневой элемент
             XmlElement xRoot = xDoc.DocumentElement;
-                
+                // обход всех узлов в корневом элементе
                 foreach (XmlNode xnode in xRoot)
                 {
-                    
+                    // получаем атрибут name
                     if (xnode.Attributes.Count > 0)
                     {
-                        XmlNode attr = xnode.Attributes.GetNamedItem("lang");
+                        XmlNode attr = xnode.Attributes.GetNamedItem("name");
                         if (attr == null)
                         {
                             MessageBox.Show("Ошибка прочтения файла", "Ошибка XML ", MessageBoxButtons.OK,
@@ -450,7 +455,7 @@ namespace OOP_Lab_1
                                     {
                                         MOpen.Text = childnode.InnerText;
                                     }
-                                    
+                                    // если узел age
                                     if (childnode.Name == "LangSave")
                                     {
                                         MSave.Text = childnode.InnerText;
@@ -513,7 +518,7 @@ namespace OOP_Lab_1
         {
 
             
-        }
+       }
 
         private void Form1_Leave(object sender, EventArgs e)
         {
@@ -571,7 +576,6 @@ namespace OOP_Lab_1
                 {
                     MessageBox.Show(x.Message, "Ошибка сохранения в XML", MessageBoxButtons.OK,
                         MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-
                 }
             }
         }

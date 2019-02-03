@@ -36,10 +36,7 @@ namespace OOP_Lab_1.Factories
             {
                 gObject.DrawEllipse(pen, new Rectangle(shape.x2, shape.y1, Math.Abs(shape.x2 - shape.x1), Math.Abs(shape.y2 - shape.y1)));
             }
-            else
-            {
-                gObject.DrawEllipse(pen, new Rectangle(shape.x1, shape.y1, Math.Abs(shape.x2 - shape.x1), Math.Abs(shape.y2 - shape.y1)));
-            }
+            else gObject.DrawEllipse(pen, new Rectangle(shape.x1, shape.y1, Math.Abs(shape.x2 - shape.x1), Math.Abs(shape.y2 - shape.y1)));
 
         }
 
