@@ -73,6 +73,7 @@
     <Compile Include="Factories\MainFactory.cs" />
     <Compile Include="Factories\RectangleFactory.cs" />
     <Compile Include="Factories\SquareFactory.cs" />
+    <Compile Include="Factories\TestFactory.cs" />
     <Compile Include="Factories\TriangleFactory.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
