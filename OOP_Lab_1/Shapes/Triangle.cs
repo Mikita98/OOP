@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Drawing;
 using BaseDll;
+
 namespace OOP_Lab_1.Shapes
 {
     [Serializable]
